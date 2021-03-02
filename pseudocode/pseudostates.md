@@ -1,6 +1,6 @@
 let states = [view0, view1, view2, view3, view4, view5];
 
-let defaultView = states[0];
+let currentView = states[0];
 //this is our initial state that is the first view and start of the game
 //This is when the symbols need to be assigned and every time the user initiates this page the 
     //symbols need to update
@@ -14,22 +14,22 @@ let defaultView = states[0];
     const secondInstrct = getElementById("i2").innerHTML;
     getElementById("i2") = "when you have your number click next";
 
-    const thirdHeader = get ElementById("h3").innerHTML;
+    const thirdHeader = getElementById("h3").innerHTML;
     get ElementById("h3").innerHTML = "Add both digits together to get a new number";
     const thirdInstrct = getElementById("i3").innerHTML;
     getElementById("i3") = "Ex. 14 is 1 + 4 = 5 /n click next to proceed";
 
-    const fourthHeader = get ElementById("h4").innerHTML;
+    const fourthHeader = getElementById("h4").innerHTML;
     get ElementById("h4").innerHTML = "Subtract your new number from the original number";
     const fourthInstrct = getElementById("i4").innerHTML;
     getElementById("i4") = "Ex. 14 - 5 = 9 /n click next to proceed";
 
-    const fifthHeader = get ElementById("h5").innerHTML;
+    const fifthHeader = getElementById("h5").innerHTML;
     get ElementById("h5").innerHTML = scroll bar of variable randomize output;
     const fifthInstrct = getElementById("i5").innerHTML;
     getElementById("i5") = "Find your new number. /n Note the symbol beside the number";
 
-    const sixthHeader = get ElementById("h6").innerHTML;
+    const sixthHeader = getElementById("h6").innerHTML;
     get ElementById("h6").innerHTML = variable magic9;
     const sixthInstrct = getElementById("i6").innerHTML;
     getElementById("i6") = "Your symbol is: " + variable magic9;
