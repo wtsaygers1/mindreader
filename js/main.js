@@ -4,28 +4,54 @@ let symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ@&^*!#$%".split("");
 let magic9Index = Math.floor(Math.random() * symbols.length);
 //variable that stores the actual magic9 symbol from the arry symbols
 let magic9 = symbols[magic9Index];
-//removes the index of the magic9 symbol and creates a new array w/o that symbol    
-let magic9symbol = symbols.splice(magic9Index, 1);
-// assigns the symbols to the numbers
-let randomize = function newSymbols() {
+// the rules of for loop are once it returns, it is finished
+function randomize() {
+
+
+    
+    //removes the index of the magic9 symbol and creates a new array w/o that symbol    
+    // let magic9symbol = symbols.splice(magic9Index, 1);
+
+    let output = "";
     for (let i = 0; i <= 99; i++) {
+        output += i + " ... ";
         if (i % 9 === 0) {
-            return magic9;
+            output += magic9;
         } else {
-            return symbols[Math.floor(Math.random() * symbols.length)];
+            output += symbols[Math.floor(Math.random() * symbols.length)];
         }
+        output += "<br>";
     }
+    return output;
 }
+
+let btnNxt = document.getElementById("btn-Nxt");
+btnNxt.addEventListener("click", next);
+//btnNxt.classList.toggle("visible");
+//btnNxt.classList.toggle("invisible");
+let btnRvl = document.getElementById("btn-Rvl");
+btnRvl.addEventListener("click", next);
+let btnStrt = document.getElementById("btn-Strt");
+btnStrt.addEventListener("click", next); 
+//the three buttons above all just use the next function because they are simply changing the view forward one state
+let btnBck = document.getElementById("btn-Bck");
+btnBck.addEventListener("click", back);
+//the back button changes the view backwards one state
+let btnRstrt = document.getElementById("btn-Rstrt");
+btnRstrt.addEventListener("click", restart);
+//the restart button uses the render function to initalize the page to the first state
+// the Restart button is rendering the initial state but the view is not changing
 // an array of the different states
+
 const states = [
     {
         main: "Let's Play a Game!",
-        //instrct: undefined 
-        btnNxtvis: false,
-        btnRvlvis: false,
-        btnStrtvis: true,
-        btnRstrtvis: false,
-        btnBckvis: false
+        //instrct: undefined, 
+        //btnNxt: invisible,
+        btnRvl: false,
+        btnStrt: true,
+        btnRstrt: false,
+        btnBck: false
     },
 
     {
@@ -59,8 +85,9 @@ const states = [
     },
 
     {
+        // main: other99(),
         main: randomize(),
-        instrct: "Find your new number. /n Note the symbol beside the number",
+        instrct: "Find your new number. Note the symbol beside the number",
         btnNxtvis: false,
         btnRvlvis: true,
         btnStrtvis: false,
@@ -78,15 +105,23 @@ const states = [
         btnBckvis: true
     }
 ];
+
 // giving the index a variable so it can iterate later
 let viewIndex = 0;
 // initalizes the current view to be the first index in states
 let currentView = states[viewIndex];
+//updating the html document from js
+
+// condition is based on what state is currently being viewed
+//btnNxt.classList.toggle("visible", currentView);
+
 
 // the render function is establishing everything that will go on the page when the browser loads
 function render() {
     document.getElementById("main").innerHTML = currentView.main
     document.getElementById("instrct").innerHTML = currentView.instrct
+    //set a class to something here
+    //btnNxt.classList.toggle("visible", currentView)
     console.log("in the render menthod")
 }
 // the next function is establishing how the page will load when the next button is clicked
@@ -116,42 +151,22 @@ function init() {
     render()
 }
 
-//updating the html document from js
-let btnNxt = document.getElementById("btn-Nxt");
-btnNxt.addEventListener("click", next);
-let btnRvl = document.getElementById("btn-Rvl");
-btnRvl.addEventListener("click", next);
-let btnStrt = document.getElementById("btn-Strt");
-btnStrt.addEventListener("click", next); 
-//the three buttons above all just use the next function because they are simply changing the view forward one state
-let btnBck = document.getElementById("btn-Bck");
-btnBck.addEventListener("click", back);
-//the back button changes the view backwards one state
-let btnRstrt = document.getElementById("btn-Rstrt");
-btnRstrt.addEventListener("click", restart);
-//the restart button uses the render function to initalize the page to the first state
-// the Restart button is rendering the initial state but the view is not changing
-
-// functions that execute as states change
-// these two functions will update the HTML of the main and instruction texts in the views as the state changes
-// function mTxt() {
-//     document.getElementById("main").innerHTML = currentView.main;
-// }
-// function iTxt() {
-//     document.getElementById("instrct").innerHTML = currentView.instrct;
-// }
-//     // these functions will update the views as the buttons are activated
-// const btnNxt = document.getElementById("btn-Nxt");
-// btnNxt.addEventListener("click", function render() {
-//         currentView++;
-// });
-// const btnBck = document.getElementById("btn-Bck");
-// btnBck.addEventListener("click", function render() {
-//         currentView--;
-// });
-// const btnRstrt = document.getElementById("btn-Rstrt");
-// btnRstrt.addEventListener("click", function render() {
-//         currentView;
+// //updating the html document from js
+// let btnNxt = document.getElementById("btn-Nxt");
+// btnNxt.addEventListener("click", next);
+// //btn-Nxt.classList.toggle('visible' true);
+// let btnRvl = document.getElementById("btn-Rvl");
+// btnRvl.addEventListener("click", next);
+// let btnStrt = document.getElementById("btn-Strt");
+// btnStrt.addEventListener("click", next); 
+// //the three buttons above all just use the next function because they are simply changing the view forward one state
+// let btnBck = document.getElementById("btn-Bck");
+// btnBck.addEventListener("click", back);
+// //the back button changes the view backwards one state
+// let btnRstrt = document.getElementById("btn-Rstrt");
+// btnRstrt.addEventListener("click", restart);
+// //the restart button uses the render function to initalize the page to the first state
+// // the Restart button is rendering the initial state but the view is not changing
 
 //this makes sure the html body loads when initialized
 document.body.onload = init;
