@@ -1,0 +1,4 @@
+/* needed to fit the view height to 100% of available */
+html, body {
+    height: 100vh;
+}
